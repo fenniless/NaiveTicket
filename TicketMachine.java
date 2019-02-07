@@ -17,6 +17,9 @@ public class TicketMachine
     private int balance;
     // The total amount of money collected by this machine.
     private int total;
+    
+    private int score;
+    private int status;
 
     /**
      * Create a machine that issues tickets of the given price.
@@ -28,7 +31,17 @@ public class TicketMachine
         price = ticketCost;
         balance = 0;
         total = 0;
+        
+        
     }
+    
+        public TicketMachine()
+    {
+        price = 500;
+        balance = 0;
+        total = 0;
+    }
+    
 
     /**
      * Return the price of a ticket.
@@ -36,6 +49,13 @@ public class TicketMachine
     public int getPrice()
     {
         return price;
+    }
+    /**
+     * Return the total.
+     */
+    public int getTotal()
+    {
+        return total;
     }
 
     /**
@@ -63,16 +83,66 @@ public class TicketMachine
     public void printTicket()
     {
         // Simulate the printing of a ticket.
+        if (balance >= price){
+        
         System.out.println("##################");
         System.out.println("# The BlueJ Line");
         System.out.println("# Ticket");
         System.out.println("# " + price + " cents.");
         System.out.println("##################");
         System.out.println();
-
-        // Update the total collected with the balance.
+        
+         // Update the total collected with the balance.
         total = total + balance;
-        // Clear the balance.
-        balance = 0;
+        // Clear the cost out of the balance
+        balance = balance - price;
     }
+    else {
+        System.out.println("##################");
+        System.out.println("# The BlueJ Line");
+        System.out.println("# INSUFICIENT");
+        System.out.println("# FUNDS");
+        System.out.println("# I REQUIRE");
+        System.out.println("# MORE CURRENCY");
+        System.out.println("##################");
+        System.out.println();
+
+    }
+    
+    
+    }
+    /**
+       * Increase score by the given number of points.
+     */
+    public void increase(int points)
+    {
+        points = points + score;   
+    }
+    
+    /**
+       * Reduce price by the given amount.
+     */
+    public void discount(int amount)
+    {
+        price = price - amount;
+    }
+    
+    public void prompt()
+    {
+        System.out.println("Please insert the correct amount of money.");
+        
+    }
+    
+    public void showPrice()
+    {
+        System.out.println("The ticket costs: " + price + " cents.");
+        
+    }
+    
+    public void empty()
+    {
+         total = total * 0;
+        
+    }
+    
 }
